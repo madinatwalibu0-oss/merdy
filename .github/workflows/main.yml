@@ -1,0 +1,57 @@
+- name: gha-mergify-ci
+  # You may pin to the exact commit or the version.
+  # uses: Mergifyio/gha-mergify-ci@5e8176734bc525c7fd8b2e812f0fa47246f601b7
+  uses: Mergifyio/gha-mergify-ci@v25
+  with:
+    # The Mergify CI action:
+* junit-process: process JUnit XML files with Mergify CI Insights (Upload and Quarantine)
+* scopes: detect and upload pull requests scopes to Mergify Merge Queue
+* scopes-git-refs: return the base/head git references of the pull request in Merge Queue context
+* scopes-upload: upload pull requests scopes to Mergify Merge Queue
+* wait-jobs: wait for specified jobs to complete before proceeding
+
+    action: # optional, default is junit-process
+    # Mergify CI token
+    token: # optional
+    # URL of the Mergify API
+    mergify_api_url: # optional, default is https://api.mergify.com
+    # Override the job name, must be used in case of matrix job to avoid
+having the same name for all jobs
+
+    job_name: # optional
+    # Path of the files to upload
+    report_path: # optional
+    # Comma separated list of scopes to upload
+    scopes: # optional
+    # Declare that the pull request impacts all scopes (actions: scopes,
+scopes-upload). The Merge Queue treats such a pull request as a
+barrier: it conflicts with every scope, so it is never batched or
+merged in parallel with other pull requests. Typical use: a
+build-system or CI configuration change where enumerating every
+impacted scope is brittle.
+
+    all_scopes: # optional, default is false
+    # Path to the Mergify configuration file
+    mergify_config_path: # optional
+    # Base git reference for scope detection (action: scopes). Overrides the
+automatic push/pull-request detection. Leave unset to auto-detect.
+
+    base: # optional
+    # Head git reference for scope detection (action: scopes). Defaults to
+HEAD. Leave unset to auto-detect.
+
+    head: # optional
+    # Outcome of the test runner step (e.g. steps.<id>.outcome).
+Pass this to detect silent failures where the test runner crashed
+but the JUnit report appears clean.
+Values: 'success', 'failure', 'cancelled', 'skipped', or omit entirely.
+'skipped' is treated the same as omitting this input.
+
+    test_step_outcome: # optional
+    # List of jobs to wait for completion
+    jobs: # optional
+    # Version of mergify-cli to install. Use `latest` to install the latest
+released version without pinning. Leave unset to use the version pinned
+by Mergifyio/setup-cli.
+
+    mergify_cli_version: # optional
