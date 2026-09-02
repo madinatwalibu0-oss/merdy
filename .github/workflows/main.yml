@@ -1,5 +1,20 @@
-cd 'c:\Users\ENVY\.claude'
-git add .github/workflows/main.yml
-git commit -m "Fix workflow YAML syntax: replace malformed main.yml"
-git push origin main
+name: My Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run workflow
+        run: echo "Workflow triggered successfully"
+
           
