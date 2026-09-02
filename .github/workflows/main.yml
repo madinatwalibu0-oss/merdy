@@ -1,20 +1,5 @@
-name: CI
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  gha-mergify-ci:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Run Mergify CI
-        uses: Mergifyio/gha-mergify-ci@v25
-        with:
-          # Optional inputs:
-          # token: ${{ secrets.MERGIFY_TOKEN }}
+cd 'c:\Users\ENVY\.claude'
+git add .github/workflows/main.yml
+git commit -m "Fix workflow YAML syntax: replace malformed main.yml"
+git push origin main
           
