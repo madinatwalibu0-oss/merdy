@@ -17,5 +17,4 @@ jobs:
         with:
           # Optional inputs:
           # token: ${{ secrets.MERGIFY_TOKEN }}
-          # junit-process: 'true'
-          # scopes: 'true'
+          
