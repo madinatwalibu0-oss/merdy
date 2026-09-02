@@ -1,21 +1,21 @@
-- name: Go-Migrate-Action
-  # You may pin to the exact commit or the version.
-  # uses: japerry911/go-migrate-action@fe6fb3008c4864538fe42ca87bde68dc865619c5
-  uses: japerry911/go-migrate-action@v0.2
-  with:
-    # Version of golang-migrate to use (e.g., v4.15.2)
-    GOMIGRATE_VERSION: 
-    # Database user with permissions to run migrations, pass this through as a GitHub secret for security
-    DB_USER: 
-    # Password for the database user, pass this through as a GitHub secret for security
-    DB_PASSWORD: 
-    # Name of the database to run migrations against
-    DB_NAME: 
-    # GCP Project ID where the bastion VM and Cloud SQL instance are located, pass this through as a GitHub secret for security
-    GCP_PROJECT_ID: 
-    # Name of the GCP VM instance to use as a bastion host
-    BASTION_VM_NAME: 
-    # Zone where the GCP VM instance is located (e.g., us-central1-a)
-    BASTION_VM_ZONE: 
-    # Name of the SSH name you would like to have when it SSHs into the bastion host
-    SSH_NAME: # optional, default is github-action-go-migration
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  gha-mergify-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Mergify CI
+        uses: Mergifyio/gha-mergify-ci@v25
+        with:
+          # Optional inputs:
+          # token: ${{ secrets.MERGIFY_TOKEN }}
+          # junit-process: 'true'
+          # scopes: 'true'
